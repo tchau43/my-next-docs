@@ -24,3 +24,62 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* --- SmartLink demo styles --- */
+.smart-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #e0ecff;
+  border: 1px solid #c7dafc;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+.smart-link:hover {
+  transform: translateY(-1px);
+}
+.smart-link.loading {
+  opacity: 0.7; /* mờ chữ ngay tức thì để báo đã nhận click */
+}
+.smart-link .spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #cbd5e1;
+  border-top-color: #1d4ed8;
+  border-radius: 999px;
+  animation: spin 1s linear infinite;
+  opacity: 0; /* ẩn mặc định */
+  transition: opacity 0s; /* ẩn ngay khi xong */
+}
+.smart-link.loading .spinner {
+  /* hiện spinner nhưng sau 200ms để tránh nhấp nháy trên mạng nhanh */
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.2s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- useLinkStatus hint styles --- */
+.link-hint {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #22c55e;
+  opacity: 0.2;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+.link-hint.is-pending {
+  opacity: 1;
+  background: #f97316;
+  transform: scale(1.6);
+}
